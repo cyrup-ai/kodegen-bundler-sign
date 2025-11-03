@@ -21,6 +21,9 @@ name = "kodegen_bundler_sign"
 path = "src/main.rs"
 
 [dependencies]
+kodegen_tools_github = { version = "0.1" }
+cyrup_termcolor = "2"
+
 clap = { version = "4", features = ["derive"] }
 anyhow = "1"
 serde = { version = "1", features = ["derive"] }
@@ -50,15 +53,11 @@ which = "8"
 # Certificate expiry date handling
 chrono = { version = "0.4", features = ["serde"] }
 
-# Terminal colors (REQUIRED for all user-facing output)
-cyrup_termcolor = "2"
-
 # Helper building and GitHub upload dependencies
 cc = "1"                          # Compile C code for helper
 zip = "6"                         # Create ZIP files
 sha2 = "0.10"                       # Checksums
 hex = "0.4"                         # Hex encoding
-kodegen_tools_github = { path = "../tools-github"  }  # GitHub API client (octocrab-based)
 tokio = { version = "1", features = ["full"] }  # Async runtime (full feature set for streaming I/O)
 bytes = "1"                       # For file upload
 octocrab = "0.47"                   # GitHub API (for direct access to upload_asset)
