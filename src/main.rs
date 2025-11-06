@@ -295,6 +295,11 @@ async fn build_and_upload_helper(
     let _ = writeln!(&mut buffer, "🔨 Building macOS helper app...");
     let _ = bufwtr.print(&buffer);
 
+    // Validate signing environment before building
+    kodegen_bundler_sign::sign_helper::validate_signing_requirements()
+        .await
+        .map_err(|e| anyhow::anyhow!("Signing environment validation failed: {e}"))?;
+
     tokio::fs::create_dir_all(output_dir).await?;
 
     // Build and sign helper using existing module
