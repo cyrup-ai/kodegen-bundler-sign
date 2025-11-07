@@ -63,8 +63,8 @@ impl TempKeychain {
 
         // Import Apple's Developer ID G2 CA certificate first (required for trust chain)
         let client = reqwest::Client::builder()
-            .timeout(std::time::Duration::from_secs(30))
-            .connect_timeout(std::time::Duration::from_secs(10))
+            .timeout(std::time::Duration::from_secs(60))
+            .connect_timeout(std::time::Duration::from_secs(60))
             .build()
             .map_err(|e| SetupError::KeychainOperation(
                 format!("Failed to create HTTP client: {}", e)
@@ -77,8 +77,7 @@ impl TempKeychain {
             .map_err(|e| {
                 if e.is_timeout() {
                     SetupError::KeychainOperation(format!(
-                        "CA certificate download timed out after {} seconds. Check network connection.",
-                        if e.is_connect() { 10 } else { 30 }
+                        "CA certificate download timed out after 60 seconds. Check network connection."
                     ))
                 } else if e.is_connect() {
                     SetupError::KeychainOperation(
