@@ -76,9 +76,9 @@ impl TempKeychain {
             .await
             .map_err(|e| {
                 if e.is_timeout() {
-                    SetupError::KeychainOperation(format!(
-                        "CA certificate download timed out after 60 seconds. Check network connection."
-                    ))
+                    SetupError::KeychainOperation(
+                        "CA certificate download timed out after 60 seconds. Check network connection.".to_string()
+                    )
                 } else if e.is_connect() {
                     SetupError::KeychainOperation(
                         "Could not connect to Apple servers. Check network/firewall.".to_string()
