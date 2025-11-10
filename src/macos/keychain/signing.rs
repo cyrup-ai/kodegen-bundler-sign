@@ -6,13 +6,14 @@ use std::io::Write;
 use std::path::Path;
 use termcolor::WriteColor;
 
-/// Sign binary with optional entitlements and hardened runtime
+/// Sign binary with optional entitlements, hardened runtime, and deep signing
 ///
 /// # Arguments
 /// * `binary_path` - Path to binary/app to sign
 /// * `signing_identity` - Certificate name or hash
 /// * `entitlements_path` - Optional path to entitlements.plist
 /// * `hardened_runtime` - Enable hardened runtime (required for notarization)
+/// * `deep` - Enable deep signing to recursively sign all nested components
 ///
 /// # Returns
 /// * `Ok(())` - Signing succeeded
@@ -22,6 +23,7 @@ pub async fn sign_with_entitlements(
     signing_identity: &str,
     entitlements_path: Option<&Path>,
     hardened_runtime: bool,
+    deep: bool,
 ) -> Result<()> {
     if !binary_path.exists() {
         return Err(SetupError::InvalidConfig(format!(
@@ -57,6 +59,11 @@ pub async fn sign_with_entitlements(
 
     // Force re-signing
     args.push("--force");
+
+    // Add deep signing if requested (signs all nested components)
+    if deep {
+        args.push("--deep");
+    }
 
     // Add binary path
     args.push(

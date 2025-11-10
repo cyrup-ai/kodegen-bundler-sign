@@ -43,7 +43,8 @@ pub async fn sign_helper_app(helper_dir: &Path) -> Result<(), Box<dyn std::error
         &executable_path,
         &signing_identity,
         Some(&entitlements_path),
-        true, // hardened runtime
+        true,  // hardened runtime
+        false, // deep - don't deep sign yet, bundle signing happens next
     )
     .await
     .map_err(|e| format!("Failed to sign executable: {e}"))?;

@@ -472,7 +472,7 @@ async fn run_sign(
     let _ = bufwtr.print(&buffer);
 
     // Sign with entitlements
-    macos::sign_with_entitlements(binary_path, identity, entitlements_path, hardened_runtime).await?;
+    macos::sign_with_entitlements(binary_path, identity, entitlements_path, hardened_runtime, false).await?;
 
     let mut buffer = bufwtr.buffer();
     let _ = buffer.set_color(ColorSpec::new().set_fg(Some(Color::Green)));
