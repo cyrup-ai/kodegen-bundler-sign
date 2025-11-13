@@ -21,7 +21,6 @@ name = "kodegen_bundler_sign"
 path = "src/main.rs"
 
 [dependencies]
-kodegen_tools_github = { version = "0.2" }
 cyrup_termcolor = "2"
 
 clap = { version = "4", features = ["derive"] }
