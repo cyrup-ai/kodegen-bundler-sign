@@ -1,7 +1,6 @@
 //! Certificate import operations for macOS keychain
 
 use crate::error::{Result, SetupError};
-use crate::success;
 use fs4::tokio::AsyncFileExt;
 use rand::Rng;
 use std::io::Write;

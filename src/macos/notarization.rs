@@ -127,8 +127,6 @@ struct NotarytoolOutput {
 /// notarize(Path::new("MyApp.app"), &auth, true)?;
 /// ```
 pub async fn notarize(app_bundle_path: &Path, auth: &NotarizationAuth, wait: bool) -> Result<()> {
-    use crate::success;
-
     if !app_bundle_path.exists() {
         return Err(SetupError::InvalidConfig(format!(
             "App bundle not found: {}",

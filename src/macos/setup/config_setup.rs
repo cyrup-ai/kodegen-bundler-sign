@@ -3,7 +3,6 @@
 use crate::apple_api;
 use crate::config::MacOSSetupConfig;
 use crate::error::{Result, SetupError};
-use crate::success;
 use std::io::Write;
 use termcolor::{BufferWriter, ColorChoice, WriteColor};
 

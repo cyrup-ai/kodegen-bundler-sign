@@ -1,7 +1,6 @@
 //! Enhanced code signing with entitlements and hardened runtime
 
 use crate::error::{Result, SetupError};
-use crate::success;
 use std::io::Write;
 use std::path::Path;
 use termcolor::WriteColor;

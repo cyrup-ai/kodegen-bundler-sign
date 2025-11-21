@@ -3,7 +3,7 @@
 use crate::apple_api;
 use crate::config::{CertificateType, DEFAULT_COMMON_NAME, DEFAULT_KEYCHAIN};
 use crate::error::{Result, SetupError};
-use crate::{error as error_msg, success};
+use crate::error as error_msg;
 use std::io::{self, Write};
 use tempfile::NamedTempFile;
 use termcolor::{BufferWriter, Color, ColorChoice, ColorSpec, WriteColor};

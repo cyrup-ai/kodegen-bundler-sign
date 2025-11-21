@@ -1,7 +1,6 @@
 //! CI/CD authentication from environment variables
 
 use crate::error::{Result, SetupError};
-use crate::success;
 use std::io::Write;
 use termcolor::WriteColor;
 use super::super::keychain::TempKeychain;

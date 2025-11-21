@@ -1,5 +1,7 @@
 //! App Store Connect API client for certificate provisioning
 
+#![allow(unused_assignments)]
+
 use crate::config::CertificateType;
 use anyhow::{Context, Result};
 use jsonwebtoken::{Algorithm, EncodingKey, Header, encode};
@@ -28,6 +30,7 @@ struct Claims {
 }
 
 #[derive(Zeroize, ZeroizeOnDrop)]
+#[allow(unused_assignments)]
 pub struct AppleAPIClient {
     key_id: String,
     issuer_id: String,
