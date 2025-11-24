@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/img/banner.png" alt="Kodegen AI Banner" width="100%" />
+</div>
+
 # kodegen_bundler_sign
 
 **Automated code signing and certificate provisioning for Kodegen daemon**
