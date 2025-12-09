@@ -280,8 +280,6 @@ pub async fn sign_binary(
     binary_path: &std::path::Path,
     key_id: Option<&str>,
 ) -> Result<std::path::PathBuf> {
-    use std::path::PathBuf;
-
     // Find GPG binary
     let gpg = find_gpg_binary()?;
 
