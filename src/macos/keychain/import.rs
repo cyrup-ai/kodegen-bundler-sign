@@ -36,25 +36,26 @@ pub async fn import_p12_with_lock(
     common_name: &str,
 ) -> Result<()> {
     // Create lock file path in cache directory
-    let lock_dir = dirs::cache_dir()
-        .ok_or_else(|| {
-            SetupError::MissingConfig("Could not determine cache directory".to_string())
-        })?
-        .join("kodegen");
+    let lock_dir = kodegen_config::KodegenConfig::cache_dir()
+        .map_err(|e| {
+            SetupError::MissingConfig(format!("Could not determine cache directory: {}", e))
+        })?;
 
     // Ensure lock directory exists
-    tokio::fs::create_dir_all(&lock_dir).await.map_err(SetupError::Io)?;
+    tokio::fs::create_dir_all(&lock_dir)
+        .await
+        .map_err(|e: std::io::Error| SetupError::Io(e))?;
 
     let lock_path = lock_dir.join("keychain.lock");
 
     // Open/create lock file
-    let lock_file = tokio::fs::OpenOptions::new()
+    let lock_file: tokio::fs::File = tokio::fs::OpenOptions::new()
         .write(true)
         .create(true)
         .truncate(true)
         .open(&lock_path)
         .await
-        .map_err(SetupError::Io)?;
+        .map_err(|e: std::io::Error| SetupError::Io(e))?;
 
     // Acquire exclusive lock - fs4 tokio integration
     // This serializes all keychain imports across all kodegen process instances
