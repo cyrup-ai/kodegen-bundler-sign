@@ -1,6 +1,6 @@
 [package]
 name = "kodegen_bundler_sign"
-version = "0.10.2"
+version = "0.10.3"
 edition = "2024"
 description = "KODEGEN.ᴀɪ: Database query and schema exploration MCP tools for AI agents."
 license = "Apache-2.0 OR MIT"
@@ -33,7 +33,7 @@ shellexpand = "3"
 kodegen_config = { version = "0.10" }
 rcgen = "0.14"
 reqwest = { version = "0.12", features = ["json"] }
-jsonwebtoken = "9"
+jsonwebtoken = { version = "10", features = ["rust_crypto"] }
 base64 = "0.22"
 thiserror = "2"
 tempfile = "3"
@@ -60,4 +60,4 @@ sha2 = "0.10"                       # Checksums
 hex = "0.4"                         # Hex encoding
 tokio = { version = "1", features = ["full"] }  # Async runtime (full feature set for streaming I/O)
 bytes = "1"                       # For file upload
-octocrab = "0.47"                   # GitHub API (for direct access to upload_asset)
+octocrab = "0.48"                   # GitHub API (for direct access to upload_asset)
